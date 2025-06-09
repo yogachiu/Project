@@ -33,9 +33,16 @@ CURE-TSR（Challenging Unreal and Real Environments for Traffic Sign Recognition
 - ResNet模型與Transformer的設計原則，融合了ViT的巨觀與微觀層級的設計策略
 - 現代化卷積設計、階層式結構、高效性能與簡單可擴展等特點
 
+#### 模型架構圖：
+整體架構從 224x224 的輸入圖片開始，經過多層 ConvNeXt Block，並在不同階段進行下採樣以提取高階特徵。每個 ConvNeXt Block 中，會先使用 Depthwise 卷積進行空間特徵處理，搭配 LayerNorm、GELU 激活函數、1x1 卷積、DropPath 與殘差連接等現代設計，提升模型的穩定性與表現力。
+
+![image](https://github.com/user-attachments/assets/2f5c4f70-124c-40da-b6a5-69ee1e017613)
+
+
+
 #### 實驗設計：  
 
-前期的實驗中，我們先找出epoch數目與圖片input size的基準，我們發現：
+前期的實驗中，我們先找出epoch數目與圖片input size的基準：
 - Epoch次數：約在 500 次時模型就已收斂
 - Input size：圖片大小為 56*56 時有較高的辨識準確度 
 
